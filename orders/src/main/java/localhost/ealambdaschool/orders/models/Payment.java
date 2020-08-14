@@ -13,7 +13,8 @@ public class Payment {
 
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
-    private long paymentID;
+    private long paymentid;
+
  @Column(nullable = false,
             unique = true)
     private String type;
@@ -29,12 +30,12 @@ public class Payment {
         this.type = type;
     }
 
-    public long getPaymentID() {
-        return paymentID;
+    public long getPaymentid() {
+        return paymentid;
     }
 
-    public void setPaymentID(long paymentID) {
-        this.paymentID = paymentID;
+    public void setPaymentid(long paymentid) {
+        this.paymentid = paymentid;
     }
 
     public String getType() {
@@ -56,9 +57,11 @@ public class Payment {
     @Override
     public String toString() {
         return "Payment{" +
-                "paymentID=" + paymentID +
+                "paymentid=" + paymentid +
                 ", type='" + type + '\'' +
                 ", orders=" + orders +
                 '}';
     }
+
+
 }

@@ -26,7 +26,7 @@ public class Order
     @JoinTable(name = "orderspayments",
             joinColumns = @JoinColumn(name = "ordnum"),
             inverseJoinColumns = @JoinColumn(name = "paymentid"))
-       private List<Payment> payments = new ArrayList<>();
+       private Set<Payment> payments =  new HashSet<>();
 
     private double advanceamount;
 
@@ -105,15 +105,17 @@ public class Order
     }
 
     public void addPayments(Payment p1){
-        this.payments.add(p1);
+
+        payments.add(p1);
+        p1.getOrders().add(this);
     }
 
-    public List<Payment> getPayments()
+    public Set<Payment> getPayments()
     {
         return payments;
     }
 
-    public void setPayments(List<Payment> payments)
+    public void setPayments(Set<Payment> payments)
     {
         this.payments = payments;
     }

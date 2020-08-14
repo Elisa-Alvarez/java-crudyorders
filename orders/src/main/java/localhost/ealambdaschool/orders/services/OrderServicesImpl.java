@@ -62,11 +62,11 @@ public class OrderServicesImpl implements OrderServices
                 .clear();
         for (Payment p : order.getPayments())
         {
-            Payment newPay = paymentrepos.findById(p.getPaymentID())
-                    .orElseThrow(() -> new EntityNotFoundException("Payment " + p.getPaymentID() + " Not Found"));
+            Payment newPay = paymentrepos.findById(p.getPaymentid())
+                    .orElseThrow(() -> new EntityNotFoundException("Payment " + p.getPaymentid() + " Not Found"));
 
-            newOrder.getPayments()
-                    .add(newPay);
+            //newOrder.getPayments().add(newPay);
+            newOrder.addPayments(newPay);
         }
 
         return orderrepos.save(newOrder);
@@ -121,15 +121,16 @@ public class OrderServicesImpl implements OrderServices
                     .clear();
             for (Payment p : order.getPayments())
             {
-                Payment newPay = paymentrepos.findById(p.getPaymentID())
-                        .orElseThrow(() -> new EntityNotFoundException("Payment " + p.getPaymentID() + " Not Found"));
+                Payment newPay = paymentrepos.findById(p.getPaymentid())
+                        .orElseThrow(() -> new EntityNotFoundException("Payment " + p.getPaymentid() + " Not Found"));
 
-                updateOrder.getPayments()
-                        .add(newPay);
+                updateOrder.addPayments(newPay);
+
             }
         }
 
         return orderrepos.save(updateOrder);
 
     }
+
 }
